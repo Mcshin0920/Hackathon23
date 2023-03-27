@@ -6,6 +6,5 @@ model = pix2tex.LatexOCR()
 def get_formula(img):
     img = Image.open(img)
     str_formula = model(img)
-    print(str_formula)
     return str_formula
 

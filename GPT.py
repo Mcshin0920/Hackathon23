@@ -1,8 +1,10 @@
 import openai
 import PictureToLatex
 import WolframAlphaSolver
+import SearchRelatedVideos
+import PlotGraph
 
-openai.api_key = "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"
+openai.api_key = "check discord for api key"
 
 def GPT_ask(GPTquestion):
     response = openai.Completion.create(
@@ -18,20 +20,26 @@ def GPT_ask(GPTquestion):
 
 try:
     question = PictureToLatex.get_formula('test.png')
+    simplified_equation_question = "Turn this LaTeX equation into a equation: " + question + "Do not simplify the equation."
+    simplified_question = (GPT_ask(simplified_equation_question)).choices[0].text
 except:
     question = input("Please enter your question: ")
+    simplified_equation_question = "Turn this question into an equation: " + question + "Do not simplify the equation."
+    simplified_question = (GPT_ask(simplified_equation_question)).choices[0].text
 
-simplify = "Turn this LaTeX equation into a equation: " + question
+video_link = GPT_ask("What concept of math is this using? " + question + " Only give the name of the concept. (Example: Quadratic Formula)")
 
-question = (GPT_ask(simplify)).choices[0].text
+answer = WolframAlphaSolver.find_answer(simplified_question)
 
-print(question) 
-
-answer = WolframAlphaSolver.find_answer("Factor for x" + question)
-
-print(answer)
-
-response = GPT_ask("Given that the answer is "+ answer + ", explain how to solve "+ question)
+response = GPT_ask("Given that the answer is "+ answer + ", explain how to solve "+ simplified_question)
 final_explain = response.choices[0].text
 
+
+# graph_form = GPT_ask("Convert this equation into matplotlib graph's y vector form (Example: 2x^2+3x+1 becomes 2*x**2+3*x+1)" + simplified_question)
+# graph_form = graph_form.choices[0].text
+# graph_form = graph_form.replace("\n", "")
+# PlotGraph.graph(graph_form)
+
+
 print(final_explain)
+print("For more help on the concept, go check out these videos: " + SearchRelatedVideos.findYT(video_link.choices[0].text + " math tutorial"))

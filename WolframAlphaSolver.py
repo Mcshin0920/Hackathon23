@@ -13,8 +13,6 @@ def find_answer(question):
     # storing the responses from wolfram alpha
     response = the_client.query(question)
 
-    print(question)
-
     # including only the text from the responses
     answer = next(response.results).text
 
