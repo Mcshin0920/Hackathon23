@@ -2,9 +2,10 @@ import openai
 import PictureToLatex
 import WolframAlphaSolver
 import SearchRelatedVideos
-import PlotGraph
+import matplotlib.pyplot as plt
+import numpy as np
 
-openai.api_key = "check discord for api key"
+openai.api_key = "discord"
 
 def GPT_ask(GPTquestion):
     response = openai.Completion.create(
@@ -35,10 +36,19 @@ response = GPT_ask("Given that the answer is "+ answer + ", explain how to solve
 final_explain = response.choices[0].text
 
 
-# graph_form = GPT_ask("Convert this equation into matplotlib graph's y vector form (Example: 2x^2+3x+1 becomes 2*x**2+3*x+1)" + simplified_question)
-# graph_form = graph_form.choices[0].text
-# graph_form = graph_form.replace("\n", "")
-# PlotGraph.graph(graph_form)
+graph_form = GPT_ask("Convert this equation into matplotlib graph's y vector form (Example: 2x^2+3x+1 becomes 2*x**2+3*x+1)" + simplified_question)
+graph_form = graph_form.choices[0].text
+graph_form = graph_form.replace("\n", "")
+graph_form = graph_form.replace("x", "%s")
+
+x = np.linspace(-10, 10, 100)
+y = graph_form % x
+fig = plt.figure(figsize = (10, 5))
+# Create the plot
+plt.plot(x, y)
+
+# Save the plot
+plt.savefig('myplot.png')
 
 
 print(final_explain)
