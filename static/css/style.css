@@ -1,0 +1,52 @@
+
+@font-face {
+    font-family:'customfont';
+    src: url('Inter-Light.ttf');
+  }
+  
+
+input {
+    border:none;
+    background-color: #96BF58;
+    width: 1040px;
+    height:60px;
+    right:115px;
+    font-size:35px;
+    color: #1A4337;
+    font-family: 'customfont';
+    }
+
+button {
+        border:none;
+        background: none;
+  }
+
+  h1 {
+    border:none;
+    font-size:35px;
+    color: #1A4337;
+    font-family: 'customfont';
+
+}
+
+.no-outline:focus {
+    outline: none;
+  }
+
+.outline:focus{
+    outline: none;
+    border:none;
+}
+input:focus, textarea:focus {
+    outline: none;
+}
+
+.image-upload>input {
+    display: none;
+  }
+
+.custom-file-upload {
+    display: inline-block;
+
+    mask-image: url('static/fonts/Group7uploadbutton.png');
+}

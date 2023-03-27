@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <head>
+        <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
+        <title>Mathwich</title>
+        <link rel="shortcut icon" type="image/jpg" href="{{ url_for('static', filename= 'images/logo.png') }}"/>
+
+    </head>
+    
+
+
+</head>
+<body>
+    <div style = "position:absolute; right:0px; top:0px;">
+        <img src="{{ url_for('static', filename= 'images/Group 10headerbar.png') }}" width="1550" height="77.25">
+     </div>
+     <div style = "position:absolute; left:35px;top:100px;">
+        <img src="{{ url_for('static', filename= 'images/Group 9resultsbox .png') }}" width="1350" height="475.25">
+    
+     </div>
+     <div style = "position:absolute; left:45px;top:90px;width:1300px; word-wrap: break-word;">
+        <h1 id="result" name="result_message"style="font-family:'customfont';">{{ result_message }} </h1>
+     </div>
+     <div style = "position:absolute; left:50px;top:615px; ">
+        
+        <img src="{{ url_for('static', filename= 'images/Group 1textbox.png') }}" width="1075" height="79">
+
+     </div>
+   
+     <div >
+        <form action="/solve/" method="post" enctype="multipart/form-data">
+
+            <div class="image-upload"style="position:absolute; left:1150px;top:615px;" >
+                <label for="file-input">
+                  <img src="{{ url_for('static', filename= 'images/Group 7uploadbutton.png') }}" width="76" height="79"/>
+                </label>
+                <input id="file-input" type="file" name ='file1'/>
+              </div>
+
+            </input>
+            <input type="text" id="equation" name="equation" style = "position:absolute; left:50px;top:615px;">
+
+
+            <button type="submit" id="enter" name="enter" style="position:absolute; left:1250px;top:615px;">
+            <img src="{{ url_for('static', filename= 'images/Group 8enterbutton.png') }}" width="138" height="79">
+            </button>
+            
+        </form>
+     </div>
+</body>
+</html>
+
